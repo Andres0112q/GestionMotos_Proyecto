@@ -1,0 +1,75 @@
+﻿
+
+using Newtonsoft.Json;
+using presentaciones_libreria.Interfaces;
+using System.Text;
+
+namespace presentaciones_libreria.Implementaciones
+{
+    public class Comunicaciones : IComunicaciones
+    {
+        public async Task<Dictionary<string, object>> Ejecutar(Dictionary<string, object> datos)
+        {
+            var url = datos["Url"].ToString();
+            var metodo = datos.ContainsKey("Metodo") ? datos["Metodo"].ToString() : "GET";
+            datos.Remove("Url");
+            datos.Remove("Metodo");
+            var stringData = datos.ContainsKey("Entidad") ?
+                JsonConvert.SerializeObject(datos["Entidad"]) : "{}";
+            var body = new StringContent(stringData, Encoding.UTF8, "application/json");
+
+            var httpClient = new HttpClient();
+            httpClient.Timeout = new TimeSpan(0, 4, 0);
+
+            HttpResponseMessage message;
+            switch (metodo)
+            {
+                case "POST":
+                    message = await httpClient.PostAsync(url, body);
+                    break;
+                case "PUT":
+                    message = await httpClient.PutAsync(url, body);
+                    break;
+                case "DELETE":
+                    message = await httpClient.DeleteAsync(url);
+                    break;
+                default:
+                    message = await httpClient.GetAsync(url);
+                    break;
+            }
+
+            if (!message.IsSuccessStatusCode)
+                throw new Exception("Error Comunicacion");
+
+            var resp = await message.Content.ReadAsStringAsync();
+            httpClient.Dispose(); httpClient = null;
+
+            resp = Replace(resp);
+            return new Dictionary<string, object>() {
+                { "Valor", resp }
+            };
+        }
+
+        private string Replace(string resp)
+        {
+            return resp.Replace("\\\\r\\\\n", "")
+                .Replace("\\r\\n", "")
+                .Replace("\\", "")
+                .Replace("\\\"", "\"")
+                .Replace("\"", "'")
+                .Replace("'[", "[")
+                .Replace("]'", "]")
+                .Replace("'{'", "{'")
+                .Replace("\\\\", "\\")
+                .Replace("'}'", "'}")
+                .Replace("}'", "}")
+                .Replace("\\n", "")
+                .Replace("\\r", "")
+                .Replace("    ", "")
+                .Replace("'{", "{")
+                .Replace("\"", "")
+                .Replace("  ", "")
+                .Replace("null", "''");
+        }
+    }
+}

@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/1. Presentaciones/">
+    <Project Path="presentaciones_libreria/presentaciones_libreria.csproj" Id="da9e83bc-3575-4fb2-87de-6c11bd5ad5a5" />
+    <Project Path="presentacionmotos_aspnetcore/presentacionmotos_aspnetcore.csproj" Id="ab723af6-0c75-46e0-a495-125a658da19f" />
+  </Folder>
+  <Folder Name="/2. Servicios/">
+    <Project Path="asp_servicios/asp_servicios.csproj" Id="0c63e145-f56c-4bf1-836b-bc8e3a0a2b43" />
+    <Project Path="lib_gestionMotos/lib_gestionMotos.csproj" />
+  </Folder>
+  <Folder Name="/3. Pruebas unitarias/">
+    <Project Path="folder_unitarias/folder_unitarias.csproj" />
+  </Folder>
+</Solution>
