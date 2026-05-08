@@ -30,6 +30,11 @@ namespace lib_gestionMotos.Interfaces
         DbSet<DetalleDevoluciones>? DetalleDevoluciones { get; set; }
         DbSet<Facturas>? Facturas { get; set; }
         DbSet<PagoFacturas>? PagoFacturas { get; set; }
+        DbSet<Roles>? Roles { get; set; }
+        DbSet<Usuarios>? Usuarios { get; set; }
+        DbSet<Auditorias>? Auditorias { get; set; }
+        DbSet<Sucursales>? Sucursales { get; set; }
+        DbSet<Garantias>? Garantias { get; set; }
 
         EntityEntry<T> Entry<T>(T entity) where T : class;
         int SaveChanges();

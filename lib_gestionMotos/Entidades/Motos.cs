@@ -12,6 +12,7 @@ namespace lib_gestionMotos.Entidades
         public Modelos? _Modelos { get; set; }
         public Marcas? _Marcas { get; set; }
         public List<InventarioMotos>? Inventarios { get; set; }
+        public List<Garantias>? Garantias { get; set; }
 
     }
 }

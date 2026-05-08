@@ -170,8 +170,63 @@ CREATE TABLE PagoFacturas(
 	MetodosDePagosId INT NOT NULL FOREIGN KEY REFERENCES MetodosDePagos(Id)
 )
 
+-- Tabla: Roles
+CREATE TABLE Roles(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	Nombre NVARCHAR(40),
+	Descripcion NVARCHAR(300)
+)
+
+-- Tabla: Usuarios 
+CREATE TABLE Usuarios(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	Nombre NVARCHAR(50),
+	Contraseña NVARCHAR(60),
+	RolesId INT NOT NULL FOREIGN KEY REFERENCES Roles(Id)
+)
+
+-- Tabla : Auditorias
+CREATE TABLE Auditorias(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	Entidad NVARCHAR(50),
+	Accion NVARCHAR(20),
+	Fecha DATETIME NOT NULL,
+	Descripcion NVARCHAR(300),
+	UsuariosId INT NOT NULL FOREIGN KEY REFERENCES Usuarios(Id)
+)
+
+-- Tabla: Sucursales
+CREATE TABLE Sucursales(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	Ciudad NVARCHAR(30) NOT NULL,
+	Direccion NVARCHAR(40) NOT NULL,
+)
+
+-- Tabla: Garantias
+CREATE TABLE Garantias(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	Activo BIT,
+	FechaInicio DATETIME NOT NULL,
+	FechaVencimiento DATETIME NOT NULL,
+	DuracionAños INT NOT NULL,
+	DescripcionEstado NVARCHAR(50),
+	MotosId INT NOT NULL FOREIGN KEY REFERENCES Motos(Id)
+)
 
 --Inserciones
+
+INSERT INTO Roles (Nombre,Descripcion)VALUES
+('Administrador', 'Tiene acceso total al sistema y puede gestionar usuarios, inventario y ventas '),
+('Vendedor', 'Se encarga de atender clientes, registrar ventas y generar facturas')
+
+INSERT INTO Usuarios (Nombre, Contraseña, RolesId) VALUES
+('adminC', '1234', 1),
+('vendedorL', '1234', 2)
+
+INSERT INTO Sucursales (Ciudad, Direccion) VALUES
+('Medellín', 'Calle 10 #20-30'),
+('Bogotá', 'Carrera 7 #50-20'),
+('Cali', 'Avenida 6 #43-12')
 
 INSERT INTO CategoriaRepuestos (Nombre, Descripcion, FechaCreacion, Activo) VALUES
 ('Motor', 'Repuestos internos', '2026-03-17', 1),

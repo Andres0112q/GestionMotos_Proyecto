@@ -1,16 +1,16 @@
 using lib_gestionMotos.Entidades;
 using lib_gestionMotos.Implementaciones;
 using lib_gestionMotos.Interfaces;
-using lib_gestionMotos.Nucleo;
 using Microsoft.EntityFrameworkCore;
+using lib_gestionMotos.Nucleo;
 
 namespace folder_unitarias;
 
 [TestClass]
-public class InventarioMotosUT
+public class GarantiasUT
 {
     private IConexion? iConexion;
-    private InventarioMotos? entidad;
+    private Garantias? entidad;
 
 
     [TestMethod]
@@ -26,7 +26,7 @@ public class InventarioMotosUT
     {
         this.iConexion = new Conexion();
         this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-        var lista = iConexion.InventarioMotos!.ToList();
+        var lista = iConexion.Garantias!.ToList();
         if (lista.Count > 0)
             return;
         throw new Exception("");
@@ -37,15 +37,16 @@ public class InventarioMotosUT
         this.iConexion = new Conexion();
         this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
 
-        this.entidad = new InventarioMotos()
+        this.entidad = new Garantias()
         {
-            Cantidad = 5,
-            Estado = "Disponible",
-            MotosId = 1,
-            SucursalesId = 1,
-            UltimoConteo = DateTime.Now.AddDays(-2)
+            Activo = true,
+            FechaInicio = DateTime.Now,
+            FechaVencimiento = DateTime.Now.AddYears(2),
+            DuracionAños = 2,
+            DescripcionEstado = "Test",
+            MotosId = 1
         };
-        this.iConexion.InventarioMotos!.Add(this.entidad!);
+        this.iConexion.Garantias!.Add(this.entidad!);
         this.iConexion.SaveChanges();
 
         if (this.entidad.Id != 0)
@@ -58,9 +59,9 @@ public class InventarioMotosUT
         this.iConexion = new Conexion();
         this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
 
-        this.entidad!.Cantidad = 10;
+        this.entidad!.Activo = false;
 
-        var entry = this.iConexion!.Entry<InventarioMotos>(this.entidad!);
+        var entry = this.iConexion!.Entry<Garantias>(this.entidad!);
         entry.State = EntityState.Modified;
         this.iConexion!.SaveChanges();
 
@@ -74,7 +75,7 @@ public class InventarioMotosUT
         this.iConexion = new Conexion();
         this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
 
-        this.iConexion.InventarioMotos!.Remove(this.entidad!);
+        this.iConexion.Garantias!.Remove(this.entidad!);
         this.iConexion.SaveChanges();
     }
 }

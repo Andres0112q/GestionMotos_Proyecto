@@ -35,5 +35,10 @@ namespace lib_gestionMotos.Implementaciones
         public DbSet<DetalleDevoluciones>? DetalleDevoluciones { get; set; }
         public DbSet<Facturas>? Facturas { get; set; }
         public DbSet<PagoFacturas>? PagoFacturas { get; set; }
+        public DbSet<Roles>? Roles { get; set; }
+        public DbSet<Usuarios>? Usuarios { get; set; }
+        public DbSet<Auditorias>? Auditorias { get; set; }
+        public DbSet<Sucursales>? Sucursales { get; set; }
+        public DbSet<Garantias>? Garantias { get; set; }
     }
 }
