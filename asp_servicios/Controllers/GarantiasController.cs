@@ -48,5 +48,13 @@ namespace asp_servicios.Controllers
             return IGarantiasNegocio!.Borrar(id);
         }
 
+        [HttpPut("ActualizacionDescripcion")]
+        public Garantias ActualizacionDescripcion(Garantias entidad)
+        {
+            if (this.IGarantiasNegocio == null)
+                throw new Exception("No implementado");
+            return this.IGarantiasNegocio!.ActualizacionDescripcion(entidad);
+        }
+
     }
 }

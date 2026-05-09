@@ -13,5 +13,6 @@ namespace lib_gestionMotos.Entidades
 
         public Motos? _Motos { get; set; }
         public Sucursales? _Sucursales { get; set; }
+        public List<MovimientosInventarios>? MovimientosInventarios { get; set; }
     }
 }

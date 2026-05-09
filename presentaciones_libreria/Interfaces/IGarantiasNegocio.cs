@@ -8,5 +8,6 @@ namespace presentaciones_libreria.Interfaces
         Garantias Guardar(Garantias entidad);
         Garantias Modificar(Garantias entidad);
         Garantias Borrar(Garantias entidad);
+        Garantias ActualizacionDescripcion (Garantias entidad);
     }
 }

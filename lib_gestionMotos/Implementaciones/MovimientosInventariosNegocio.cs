@@ -28,6 +28,25 @@ namespace lib_gestionMotos.Implementaciones
 
             this.iConexion.MovimientosInventarios!.Add(entidad!);
             this.iConexion.SaveChanges();
+
+            var inventario = this.iConexion.InventarioMotos!.FirstOrDefault
+                (x => x.Id == entidad.InventarioMotosId);
+            if (inventario == null)
+                throw new Exception("No existe inventario para esa moto");
+            if(entidad.Tipo == "Entrada")
+            {
+                inventario.Cantidad += entidad.Cantidad;
+            }
+            else if(entidad.Tipo == "Salida")
+            {
+                if (inventario.Cantidad < entidad.Cantidad)
+                    throw new Exception("No hay suficiente stock");
+                inventario.Cantidad -= entidad.Cantidad;
+            }
+            inventario.UltimoConteo = DateTime.Now;
+            var negocioInventario = new InventarioMotosNegocio();
+            negocioInventario.ModificarEstado(inventario);
+
             return entidad;
         }
         public MovimientosInventarios Modificar(MovimientosInventarios entidad)

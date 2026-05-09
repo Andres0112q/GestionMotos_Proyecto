@@ -55,5 +55,21 @@ namespace lib_gestionMotos.Implementaciones
             this.iConexion!.SaveChanges();
             return true;
         }
+
+        //public StockRepuestos VerificarStockMinimo(StockRepuestos entidad)
+        //{
+        //    this.iConexion = new Conexion();
+        //    this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+
+        //    if(entidad.Actual < entidad.Minimo)
+
+
+
+        //    var entry = this.iConexion!.Entry<StockRepuestos>(entidad);
+        //    entry.State = EntityState.Modified;
+        //    this.iConexion!.SaveChanges();
+
+        //    return entidad;
+        //}
     }
 }

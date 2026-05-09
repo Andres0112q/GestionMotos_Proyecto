@@ -10,7 +10,9 @@ namespace lib_gestionMotos.Entidades
         public DateTime Fecha { get; set; }
         public int EmpleadosId { get; set; }
         public string? AlmacenOrigen { get; set; }
+        public int InventarioMotosId { get; set; }
 
         public Empleados? _Empleados { get; set; }
+        public InventarioMotos? _InventarioMotos { get; set; }
     }
 }

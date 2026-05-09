@@ -55,5 +55,34 @@ namespace lib_gestionMotos.Implementaciones
             this.iConexion!.SaveChanges();
             return true;
         }
+
+        public InventarioMotos ModificarEstado(InventarioMotos entidad)
+        {
+            this.iConexion = new Conexion();
+            this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            var minimo = 3; //Se define el minimo de unidades para determinar si esta proximo a agotarse
+            if (entidad.Cantidad > minimo)
+            {
+                entidad.Estado = "Disponible";
+
+            }
+            else if (entidad.Cantidad > 0 && entidad.Cantidad <= minimo)
+            {
+                entidad.Estado = "Pocas Unidades";
+            }
+            else
+            {
+                entidad.Estado = "Agotado";
+            }
+
+            var entry = this.iConexion!.Entry<InventarioMotos>(entidad);
+            entry.State = EntityState.Modified;
+            this.iConexion!.SaveChanges();
+
+            return entidad;
+
+
+        }
+
     }
 }

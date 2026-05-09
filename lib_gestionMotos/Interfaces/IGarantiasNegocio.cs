@@ -7,6 +7,7 @@ namespace lib_gestionMotos.Interfaces
         List<Garantias> Consultar();
         Garantias Guardar(Garantias entidad);
         Garantias Modificar(Garantias entidad);
+        Garantias ActualizacionDescripcion(Garantias entidad);
         bool Borrar(int id);
     }
 }

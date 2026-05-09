@@ -54,5 +54,33 @@ namespace lib_gestionMotos.Implementaciones
             this.iConexion!.SaveChanges();
             return true;
         }
+
+        public Garantias ActualizacionDescripcion(Garantias entidad)
+        {
+            this.iConexion = new Conexion();
+            this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+
+            if(entidad.FechaVencimiento.Date <= DateTime.Now.Date) //Si la fecha de vencimiento es menor o igual a la fecha actual, la garantía está vencida
+            {
+                entidad.Activo = false;
+                entidad.DescripcionEstado = "Garantia Vencida";
+
+            }
+            else if(entidad.FechaVencimiento.Date > DateTime.Now.Date &&
+                entidad.FechaVencimiento.Date <= DateTime.Now.Date.AddDays(7))//Si la fecha de vencimiento es mayor a la fecha actual y menor o igual a 7 días, la garantía está próxima a vencer
+            {
+                entidad.Activo = true;
+                entidad.DescripcionEstado = "Garantia Próxima a Vencer";
+            }
+            else // Si no cumple ninguna de las dos condiciones de arriba, la garantía está activa y lejos de vencerse
+            {
+                entidad.Activo = true;
+                entidad.DescripcionEstado = "Garantia Activa";
+            }
+            var entry = this.iConexion!.Entry<Garantias>(entidad);
+            entry.State = EntityState.Modified;
+            this.iConexion!.SaveChanges();
+            return entidad;
+        }
     }
 }

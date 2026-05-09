@@ -32,8 +32,6 @@ namespace presentaciones_libreria.Implementaciones
             if (entidad.Id != 0)
                 throw new Exception("Ya se guardo");
 
-            this.iComunicaciones = new Comunicaciones();
-
             var datos = new Dictionary<string, object>();
             datos["Url"] = "http://localhost:5203/Motos/Guardar";
 

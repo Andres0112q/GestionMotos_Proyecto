@@ -43,7 +43,8 @@ public class MovimientosInventariosUT
             Cantidad = 20,
             Fecha = DateTime.Now.AddDays(-50),
             EmpleadosId = 1,  
-            AlmacenOrigen = "Proveedor"
+            AlmacenOrigen = "Proveedor",
+            InventarioMotosId = 1
         };
         this.iConexion.MovimientosInventarios!.Add(this.entidad!);
         this.iConexion.SaveChanges();
