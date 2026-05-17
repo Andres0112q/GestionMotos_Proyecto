@@ -9,6 +9,6 @@ namespace presentaciones_libreria.Interfaces
         List<Auditorias> Consultar();
         Auditorias Guardar(Auditorias entidad);
         Auditorias Modificar(Auditorias entidad);
-        Auditorias Borrar(Auditorias entidad);
+        bool Borrar(Auditorias entidad);
     }
 }

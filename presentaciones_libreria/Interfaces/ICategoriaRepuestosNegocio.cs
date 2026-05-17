@@ -8,6 +8,6 @@ namespace presentaciones_libreria.Interfaces
         List<CategoriaRepuestos> Consultar();
         CategoriaRepuestos Guardar(CategoriaRepuestos entidad);
         CategoriaRepuestos Modificar(CategoriaRepuestos entidad);
-        CategoriaRepuestos Borrar(CategoriaRepuestos entidad);
+        bool Borrar(CategoriaRepuestos entidad);
     }
 }

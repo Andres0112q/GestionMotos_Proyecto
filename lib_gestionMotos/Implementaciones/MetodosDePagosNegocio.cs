@@ -15,8 +15,14 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
-                return this.iConexion.MetodosDePagos!.ToList();
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Metodos de pagos",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron los métodos de pago"
+            });
+            return this.iConexion.MetodosDePagos!.ToList();
             }
 
             public MetodosDePagos Guardar(MetodosDePagos entidad)
@@ -26,8 +32,14 @@ namespace lib_gestionMotos.Implementaciones
 
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
-                this.iConexion.MetodosDePagos!.Add(entidad!);
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Metodos de pagos",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó el método de pago con id {entidad.Id}"
+            });
+            this.iConexion.MetodosDePagos!.Add(entidad!);
                 this.iConexion.SaveChanges();
                 return entidad;
             }
@@ -35,9 +47,15 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Metodos de pagos",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó el método de pago con id {entidad.Id}"
+            });
 
-
-                var entry = this.iConexion!.Entry<MetodosDePagos>(entidad);
+            var entry = this.iConexion!.Entry<MetodosDePagos>(entidad);
                 entry.State = EntityState.Modified;
                 this.iConexion!.SaveChanges();
 
@@ -48,8 +66,14 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
-                var entidad = new MetodosDePagos();
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Metodos de pagos",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró el método de pago con id {id}"
+            });
+            var entidad = new MetodosDePagos();
                 entidad.Id = id;
                 var entry = this.iConexion!.Entry<MetodosDePagos>(entidad);
                 entry.State = EntityState.Deleted;

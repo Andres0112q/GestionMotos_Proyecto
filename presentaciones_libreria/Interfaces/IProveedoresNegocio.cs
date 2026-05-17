@@ -9,6 +9,6 @@ namespace presentaciones_libreria.Interfaces
         List<Proveedores> Consultar();
         Proveedores Guardar(Proveedores entidad);
         Proveedores Modificar(Proveedores entidad);
-        Proveedores Borrar(Proveedores entidad);
+        bool Borrar(Proveedores entidad);
     }
 }

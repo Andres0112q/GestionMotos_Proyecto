@@ -7,6 +7,6 @@ namespace presentaciones_libreria.Interfaces
         List<Repuestos> Consultar();
         Repuestos Guardar(Repuestos entidad);
         Repuestos Modificar(Repuestos entidad);
-        Repuestos Borrar(Repuestos entidad);
+        bool Borrar(Repuestos entidad);
     }
 }

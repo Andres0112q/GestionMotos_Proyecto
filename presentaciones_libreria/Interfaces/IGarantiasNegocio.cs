@@ -7,7 +7,7 @@ namespace presentaciones_libreria.Interfaces
         List<Garantias> Consultar();
         Garantias Guardar(Garantias entidad);
         Garantias Modificar(Garantias entidad);
-        Garantias Borrar(Garantias entidad);
+        bool Borrar(Garantias entidad);
         Garantias ActualizacionDescripcion (Garantias entidad);
     }
 }

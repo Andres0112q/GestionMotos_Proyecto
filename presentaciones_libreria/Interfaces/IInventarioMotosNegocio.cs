@@ -8,6 +8,6 @@ namespace presentaciones_libreria.Interfaces
         List<InventarioMotos> Consultar();
         InventarioMotos Guardar(InventarioMotos entidad);
         InventarioMotos Modificar(InventarioMotos entidad);
-        InventarioMotos Borrar(InventarioMotos entidad);
+        bool Borrar(InventarioMotos entidad);
     }
 }

@@ -8,6 +8,6 @@ namespace presentaciones_libreria.Interfaces
         List<Motos> Consultar();
         Motos Guardar(Motos entidad);
         Motos Modificar(Motos entidad);
-        Motos Borrar(Motos entidad);
+        bool Borrar(Motos entidad);
     }
 }

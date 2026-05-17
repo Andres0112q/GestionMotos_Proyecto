@@ -8,6 +8,6 @@ namespace presentaciones_libreria.Interfaces
         List<Marcas> Consultar();
         Marcas Guardar(Marcas entidad);
         Marcas Modificar(Marcas entidad);
-        Marcas Borrar(Marcas entidad);
+        bool Borrar(Marcas entidad);
     }
 }

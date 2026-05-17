@@ -8,5 +8,6 @@ namespace lib_gestionMotos.Interfaces
         Sucursales Guardar(Sucursales entidad);
         Sucursales Modificar(Sucursales entidad);
         bool Borrar(int id);
+        List<Sucursales> PorDepartamento(string departamento);
     }
 }

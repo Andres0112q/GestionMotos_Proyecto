@@ -14,6 +14,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Inventario Motos",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron las motos del inventario"
+            });
 
             return this.iConexion.InventarioMotos!.ToList();
         }
@@ -25,7 +32,13 @@ namespace lib_gestionMotos.Implementaciones
 
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Inventario Motos",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó la moto con id {entidad.Id}"
+            });
             this.iConexion.InventarioMotos!.Add(entidad!);
             this.iConexion.SaveChanges();
             return entidad;
@@ -34,7 +47,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Inventario Motos",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó la moto con id {entidad.Id}"
+            });
 
             var entry = this.iConexion!.Entry<InventarioMotos>(entidad);
             entry.State = EntityState.Modified;
@@ -47,7 +66,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Inventario Motos",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró la moto con id {id}"
+            });
             var entidad = new InventarioMotos();
             entidad.Id = id;
             var entry = this.iConexion!.Entry<InventarioMotos>(entidad);

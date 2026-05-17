@@ -67,7 +67,7 @@ namespace presentaciones_libreria.Implementaciones
             return JsonConvert.DeserializeObject<Roles>(
                 respuesta["Valor"].ToString()!)!;
         }
-        public Roles Borrar(Roles entidad)
+        public bool Borrar(Roles entidad)
         {
             if (entidad.Id == 0)
                 throw new Exception("No existe el registro");
@@ -82,9 +82,9 @@ namespace presentaciones_libreria.Implementaciones
             var respuesta = task.Result;
 
             if (!respuesta.ContainsKey("Valor"))
-                return new Roles();
+                return false;
 
-            return JsonConvert.DeserializeObject<Roles>(
+            return JsonConvert.DeserializeObject<bool>(
                 respuesta["Valor"].ToString()!)!;
         }
     }

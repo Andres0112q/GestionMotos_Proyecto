@@ -66,7 +66,7 @@ namespace presentaciones_libreria.Implementaciones
             return JsonConvert.DeserializeObject<InventarioMotos>(
                 respuesta["Valor"].ToString()!)!;
         }
-        public InventarioMotos Borrar(InventarioMotos entidad)
+        public bool Borrar(InventarioMotos entidad)
         {
             if (entidad.Id == 0)
                 throw new Exception("No existe el registro");
@@ -81,9 +81,9 @@ namespace presentaciones_libreria.Implementaciones
             var respuesta = task.Result;
 
             if (!respuesta.ContainsKey("Valor"))
-                return new InventarioMotos();
+                return false;
 
-            return JsonConvert.DeserializeObject<InventarioMotos>(
+            return JsonConvert.DeserializeObject<bool>(
                 respuesta["Valor"].ToString()!)!;
         }
     }

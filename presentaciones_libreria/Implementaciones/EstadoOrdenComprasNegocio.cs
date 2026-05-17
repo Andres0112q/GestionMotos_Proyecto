@@ -66,7 +66,7 @@ namespace presentaciones_libreria.Implementaciones
             return JsonConvert.DeserializeObject<EstadoOrdenCompras>(
                 respuesta["Valor"].ToString()!)!;
         }
-        public EstadoOrdenCompras Borrar(EstadoOrdenCompras entidad)
+        public bool Borrar(EstadoOrdenCompras entidad)
         {
             if (entidad.Id == 0)
                 throw new Exception("No existe el registro");
@@ -81,9 +81,9 @@ namespace presentaciones_libreria.Implementaciones
             var respuesta = task.Result;
 
             if (!respuesta.ContainsKey("Valor"))
-                return new EstadoOrdenCompras();
+                return false;
 
-            return JsonConvert.DeserializeObject<EstadoOrdenCompras>(
+            return JsonConvert.DeserializeObject<bool>(
                 respuesta["Valor"].ToString()!)!;
         }
     }

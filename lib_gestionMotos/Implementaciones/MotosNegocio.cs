@@ -15,8 +15,15 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Motos",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron las motos"
+            });
 
-                return this.iConexion.Motos!.ToList();
+            return this.iConexion.Motos!.Include(x => x._Modelos).Include(x => x._Marcas).ToList();
             }
 
             public Motos Guardar(Motos entidad)
@@ -26,8 +33,14 @@ namespace lib_gestionMotos.Implementaciones
 
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
-                this.iConexion.Motos!.Add(entidad!);
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Motos",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó la moto con id {entidad.Id}"
+            });
+            this.iConexion.Motos!.Add(entidad!);
                 this.iConexion.SaveChanges();
                 return entidad;
             }
@@ -35,9 +48,16 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Motos",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó la moto con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
-
-                var entry = this.iConexion!.Entry<Motos>(entidad);
+            var entry = this.iConexion!.Entry<Motos>(entidad);
                 entry.State = EntityState.Modified;
                 this.iConexion!.SaveChanges();
 
@@ -48,8 +68,14 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
-                var entidad = new Motos();
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Motos",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró la moto con id {id}"
+            });
+            var entidad = new Motos();
                 entidad.Id = id;
                 var entry = this.iConexion!.Entry<Motos>(entidad);
                 entry.State = EntityState.Deleted;

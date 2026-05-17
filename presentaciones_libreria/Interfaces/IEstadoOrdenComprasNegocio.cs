@@ -8,6 +8,6 @@ namespace presentaciones_libreria.Interfaces
         List<EstadoOrdenCompras> Consultar();
         EstadoOrdenCompras Guardar(EstadoOrdenCompras entidad);
         EstadoOrdenCompras Modificar(EstadoOrdenCompras entidad);
-        EstadoOrdenCompras Borrar(EstadoOrdenCompras entidad);
+        bool Borrar(EstadoOrdenCompras entidad);
     }
 }

@@ -69,7 +69,7 @@ namespace presentaciones_libreria.Implementaciones
             return JsonConvert.DeserializeObject<DetalleDevoluciones>(
                 respuesta["Valor"].ToString()!)!;
         }
-        public DetalleDevoluciones Borrar(DetalleDevoluciones entidad)
+        public bool Borrar(DetalleDevoluciones entidad)
         {
             if (entidad.Id == 0)
                 throw new Exception("No existe el registro");
@@ -84,9 +84,9 @@ namespace presentaciones_libreria.Implementaciones
             var respuesta = task.Result;
 
             if (!respuesta.ContainsKey("Valor"))
-                return new DetalleDevoluciones();
+                return false;
 
-            return JsonConvert.DeserializeObject<DetalleDevoluciones>(
+            return JsonConvert.DeserializeObject<bool>(
                 respuesta["Valor"].ToString()!)!;
         }
     }

@@ -67,7 +67,7 @@ namespace presentaciones_libreria.Implementaciones
             return JsonConvert.DeserializeObject<Sucursales>(
                 respuesta["Valor"].ToString()!)!;
         }
-        public Sucursales Borrar(Sucursales entidad)
+        public bool Borrar(Sucursales entidad)
         {
             if (entidad.Id == 0)
                 throw new Exception("No existe el registro");
@@ -82,9 +82,25 @@ namespace presentaciones_libreria.Implementaciones
             var respuesta = task.Result;
 
             if (!respuesta.ContainsKey("Valor"))
-                return new Sucursales();
+                return false;
 
-            return JsonConvert.DeserializeObject<Sucursales>(
+            return JsonConvert.DeserializeObject<bool>(
+                respuesta["Valor"].ToString()!)!;
+        }
+        public List<Sucursales> PorDepartamento(string departamento)
+        {
+            var datos = new Dictionary<string, object>();
+            datos["Url"] = $"http://localhost:5203/Sucursales/PorDepartamento/{departamento}";
+
+            this.iComunicaciones = new Comunicaciones();
+            var task = this.iComunicaciones.Ejecutar(datos)!;
+            task.Wait();
+            var respuesta = task.Result;
+
+            if (!respuesta.ContainsKey("Valor"))
+                return new List<Sucursales>();
+
+            return JsonConvert.DeserializeObject<List<Sucursales>>(
                 respuesta["Valor"].ToString()!)!;
         }
     }

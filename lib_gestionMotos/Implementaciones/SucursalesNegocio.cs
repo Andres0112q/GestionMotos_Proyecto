@@ -53,5 +53,12 @@ namespace lib_gestionMotos.Implementaciones
             this.iConexion!.SaveChanges();
             return true;
         }
+        public List<Sucursales> PorDepartamento(string departamento)
+        {
+            this.iConexion = new Conexion();
+            this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            return this.iConexion.Sucursales!
+                .Where(s => s.Ciudad == departamento).Include(x => x.InventarioMotos).ToList();
+        }
     }
 }

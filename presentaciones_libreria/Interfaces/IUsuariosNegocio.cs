@@ -7,6 +7,6 @@ namespace presentaciones_libreria.Interfaces
         List<Usuarios> Consultar();
         Usuarios Guardar(Usuarios entidad);
         Usuarios Modificar(Usuarios entidad);
-        Usuarios Borrar(Usuarios entidad);
+        bool Borrar(Usuarios entidad);
     }
 }

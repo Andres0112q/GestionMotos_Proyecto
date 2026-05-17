@@ -8,6 +8,6 @@ namespace presentaciones_libreria.Interfaces
         List<Roles> Consultar();
         Roles Guardar(Roles entidad);
         Roles Modificar(Roles entidad);
-        Roles Borrar(Roles entidad);
+        bool Borrar(Roles entidad);
     }
 }

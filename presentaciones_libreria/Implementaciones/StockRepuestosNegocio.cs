@@ -66,7 +66,7 @@ namespace presentaciones_libreria.Implementaciones
             return JsonConvert.DeserializeObject<StockRepuestos>(
                 respuesta["Valor"].ToString()!)!;
         }
-        public StockRepuestos Borrar(StockRepuestos entidad)
+        public bool Borrar(StockRepuestos entidad)
         {
             if (entidad.Id == 0)
                 throw new Exception("No existe el registro");
@@ -81,9 +81,9 @@ namespace presentaciones_libreria.Implementaciones
             var respuesta = task.Result;
 
             if (!respuesta.ContainsKey("Valor"))
-                return new StockRepuestos();
+                return false;
 
-            return JsonConvert.DeserializeObject<StockRepuestos>(
+            return JsonConvert.DeserializeObject<bool>(
                 respuesta["Valor"].ToString()!)!;
         }
     }

@@ -8,6 +8,6 @@ namespace presentaciones_libreria.Interfaces
         List<DetalleDevoluciones> Consultar();
         DetalleDevoluciones Guardar(DetalleDevoluciones entidad);
         DetalleDevoluciones Modificar(DetalleDevoluciones entidad);
-        DetalleDevoluciones Borrar(DetalleDevoluciones entidad);
+        bool Borrar(DetalleDevoluciones entidad);
     }
 }

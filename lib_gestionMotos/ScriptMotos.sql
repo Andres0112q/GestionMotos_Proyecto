@@ -90,7 +90,8 @@ CREATE TABLE InventarioMotos(
 	Cantidad INT NOT NULL,
 	Estado NVARCHAR(40),
 	MotosId INT NOT NULL FOREIGN KEY REFERENCES Motos(Id),
-	UltimoConteo DATETIME NOT NULL
+	UltimoConteo DATETIME NOT NULL,
+	SucursalesId INT NOT NULL FOREIGN KEY REFERENCES Sucursales(Id)
 )
 -- Tabla: StockRepuestos
 CREATE TABLE StockRepuestos(

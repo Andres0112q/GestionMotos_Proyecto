@@ -14,6 +14,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Movimientos Inventarios",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron los movimientos de inventario"
+            });
 
             return this.iConexion.MovimientosInventarios!.ToList();
         }
@@ -25,7 +32,13 @@ namespace lib_gestionMotos.Implementaciones
 
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Movimientos Inventarios",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó el movimiento de inventario con id {entidad.Id}"
+            });
             this.iConexion.MovimientosInventarios!.Add(entidad!);
             this.iConexion.SaveChanges();
 
@@ -53,7 +66,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Movimientos Inventarios",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó el movimiento de inventario con id {entidad.Id}"
+            });
 
             var entry = this.iConexion!.Entry<MovimientosInventarios>(entidad);
             entry.State = EntityState.Modified;
@@ -66,7 +85,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Movimientos Inventarios",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró el movimiento de inventario con id {id}"
+            });
             var entidad = new MovimientosInventarios();
             entidad.Id = id;
             var entry = this.iConexion!.Entry<MovimientosInventarios>(entidad);

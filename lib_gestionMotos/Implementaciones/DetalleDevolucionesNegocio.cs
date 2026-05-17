@@ -14,6 +14,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Detalle Devoluciones",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron los detalles de devoluciones"
+            });
 
             return this.iConexion.DetalleDevoluciones!.ToList();
         }
@@ -25,6 +32,13 @@ namespace lib_gestionMotos.Implementaciones
 
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Detalle Devoluciones",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó el detalle de devoluciones con id {entidad.Id}"
+            });
 
             this.iConexion.DetalleDevoluciones!.Add(entidad!);
             this.iConexion.SaveChanges();
@@ -34,6 +48,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Detalle Devoluciones",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó el detalle de devoluciones con id {entidad.Id}"
+            });
 
 
             var entry = this.iConexion!.Entry<DetalleDevoluciones>(entidad);
@@ -47,6 +68,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Detalle Devoluciones",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró el detalle de devoluciones con id {id}"
+            });
 
             var entidad = new DetalleDevoluciones();
             entidad.Id = id;

@@ -68,7 +68,7 @@ namespace presentaciones_libreria.Implementaciones
             return JsonConvert.DeserializeObject<MovimientosInventarios>(
                 respuesta["Valor"].ToString()!)!;
         }
-        public MovimientosInventarios Borrar(MovimientosInventarios entidad)
+        public bool Borrar(MovimientosInventarios entidad)
         {
             if (entidad.Id == 0)
                 throw new Exception("No existe el registro");
@@ -83,9 +83,9 @@ namespace presentaciones_libreria.Implementaciones
             var respuesta = task.Result;
 
             if (!respuesta.ContainsKey("Valor"))
-                return new MovimientosInventarios();
+                return false;
 
-            return JsonConvert.DeserializeObject<MovimientosInventarios>(
+            return JsonConvert.DeserializeObject<bool>(
                 respuesta["Valor"].ToString()!)!;
         }
     }

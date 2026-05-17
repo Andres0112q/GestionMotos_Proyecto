@@ -66,7 +66,7 @@ namespace presentaciones_libreria.Implementaciones
             return JsonConvert.DeserializeObject<UnidadesDeMedidas>(
                 respuesta["Valor"].ToString()!)!;
         }
-        public UnidadesDeMedidas Borrar(UnidadesDeMedidas entidad)
+        public bool Borrar(UnidadesDeMedidas entidad)
         {
             if (entidad.Id == 0)
                 throw new Exception("No existe el registro");
@@ -81,9 +81,9 @@ namespace presentaciones_libreria.Implementaciones
             var respuesta = task.Result;
 
             if (!respuesta.ContainsKey("Valor"))
-                return new UnidadesDeMedidas();
+                return false;
 
-            return JsonConvert.DeserializeObject<UnidadesDeMedidas>(
+            return JsonConvert.DeserializeObject<bool>(
                 respuesta["Valor"].ToString()!)!;
         }
     }

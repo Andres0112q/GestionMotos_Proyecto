@@ -8,6 +8,7 @@ namespace presentaciones_libreria.Interfaces
         List<Sucursales> Consultar();
         Sucursales Guardar(Sucursales entidad);
         Sucursales Modificar(Sucursales entidad);
-        Sucursales Borrar(Sucursales entidad);
+        bool Borrar(Sucursales entidad);
+        List<Sucursales> PorDepartamento(string departamento);
     }
 }

@@ -7,6 +7,6 @@ namespace presentaciones_libreria.Interfaces
         List<OrdenCompras> Consultar();
         OrdenCompras Guardar(OrdenCompras entidad);
         OrdenCompras Modificar(OrdenCompras entidad);
-        OrdenCompras Borrar(OrdenCompras entidad);
+        bool Borrar(OrdenCompras entidad);
     }
 }

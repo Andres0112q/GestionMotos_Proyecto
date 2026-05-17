@@ -9,17 +9,36 @@ namespace presentacionmotos_aspnetcore.Pages
     public class MotosModel : PageModel
     {
         private IMotosNegocio? iMotosNegocio;
+        private IModelosNegocio? iModelosNegocio;
+        private IMarcasNegocio? iMarcasNegocio;
         [BindProperty] public List<Motos>? Lista { get; set; }
         [BindProperty] public Motos? Moto { get; set; }
         [BindProperty] public bool Borrando { get; set; }
+        [BindProperty] public List<Modelos>? ListaModelos { get; set; }
+        [BindProperty] public List<Marcas>? ListaMarcas { get; set; }
+
+        private void CargarModelos()
+        {
+            ListaModelos = iModelosNegocio!.Consultar();
+        }
+        private void CargarMarcas()
+        {
+            ListaMarcas = iMarcasNegocio!.Consultar();
+        }
 
         public MotosModel()
         {
             iMotosNegocio = new MotosNegocio();
+            iModelosNegocio = new ModelosNegocio();
+            iMarcasNegocio = new MarcasNegocio();
+            CargarModelos();
+            CargarMarcas();
         }
 
         public void OnGet()
         {
+            CargarModelos();
+            CargarMarcas();
             OnPostBtRefrescar();
         }
 
@@ -29,6 +48,8 @@ namespace presentacionmotos_aspnetcore.Pages
             {
                 if (iMotosNegocio == null)
                     return;
+                CargarModelos();
+                CargarMarcas();
                 Lista = iMotosNegocio.Consultar();
                 Moto = null;
             }
@@ -40,6 +61,8 @@ namespace presentacionmotos_aspnetcore.Pages
 
         public void OnPostBtNuevo()
         {
+            CargarModelos();
+            CargarMarcas();
             Moto = new Motos();
             Borrando = false;
         }
@@ -48,6 +71,8 @@ namespace presentacionmotos_aspnetcore.Pages
         {
             try
             {
+                CargarModelos();
+                CargarMarcas();
                 OnPostBtRefrescar();
                 Moto = Lista!.FirstOrDefault(x => x.Id == data);
                 Lista = null;
@@ -71,6 +96,8 @@ namespace presentacionmotos_aspnetcore.Pages
                     Moto = iMotosNegocio!.Modificar(Moto!);
                 if (Moto.Id == 0)
                     return;
+                CargarModelos();
+                CargarMarcas();
                 OnPostBtRefrescar();
             }
             catch (Exception ex)
@@ -85,7 +112,9 @@ namespace presentacionmotos_aspnetcore.Pages
             {
                 if (Moto == null)
                     return;
-                Moto = iMotosNegocio!.Borrar(Moto!);
+                iMotosNegocio!.Borrar(Moto!);
+                CargarModelos();
+                CargarMarcas();
                 OnPostBtRefrescar();
             }
             catch (Exception ex)
@@ -99,6 +128,8 @@ namespace presentacionmotos_aspnetcore.Pages
             try
             {
                 OnPostBtRefrescar();
+                CargarModelos();
+                CargarMarcas();
                 Moto = Lista!.FirstOrDefault(x => x.Id == data);
                 Lista = null;
                 Borrando = true;
@@ -111,6 +142,8 @@ namespace presentacionmotos_aspnetcore.Pages
 
         public void OnPostBtCerrar()
         {
+            CargarModelos();
+            CargarMarcas();
             OnPostBtRefrescar();
             Borrando = false;
         }

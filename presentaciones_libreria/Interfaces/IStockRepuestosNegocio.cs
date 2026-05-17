@@ -7,6 +7,6 @@ namespace presentaciones_libreria.Interfaces
         List<StockRepuestos> Consultar();
         StockRepuestos Guardar(StockRepuestos entidad);
         StockRepuestos Modificar(StockRepuestos entidad);
-        StockRepuestos Borrar(StockRepuestos entidad);
+        bool Borrar(StockRepuestos entidad);
     }
 }

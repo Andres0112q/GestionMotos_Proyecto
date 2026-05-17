@@ -47,6 +47,11 @@ namespace asp_servicios.Controllers
                 throw new Exception("No implementado");
             return ISucursalesNegocio!.Borrar(id);
         }
+        [HttpGet("{departamento}")]
+        public List<Sucursales> PorDepartamento(string departamento)
+        {
+            return this.ISucursalesNegocio!.PorDepartamento(departamento);
+        }
 
     }
 }

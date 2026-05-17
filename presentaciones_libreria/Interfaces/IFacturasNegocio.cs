@@ -8,6 +8,6 @@ namespace presentaciones_libreria.Interfaces
         List<Facturas> Consultar();
         Facturas Guardar(Facturas entidad);
         Facturas Modificar(Facturas entidad);
-        Facturas Borrar(Facturas entidad);
+        bool Borrar(Facturas entidad);
     }
 }

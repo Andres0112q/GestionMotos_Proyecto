@@ -14,8 +14,15 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Empleados",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron los empleados"
+            });
 
-                return this.iConexion.Empleados!.ToList();
+            return this.iConexion.Empleados!.ToList();
             }
 
             public Empleados Guardar(Empleados entidad)
@@ -25,8 +32,15 @@ namespace lib_gestionMotos.Implementaciones
 
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Empleados",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó el empleado con id {entidad.Id}"
+            });
 
-                this.iConexion.Empleados!.Add(entidad!);
+            this.iConexion.Empleados!.Add(entidad!);
                 this.iConexion.SaveChanges();
                 return entidad;
             }
@@ -34,9 +48,16 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Empleados",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó el empleado con id {entidad.Id}"
+            });
 
 
-                var entry = this.iConexion!.Entry<Empleados>(entidad);
+            var entry = this.iConexion!.Entry<Empleados>(entidad);
                 entry.State = EntityState.Modified;
                 this.iConexion!.SaveChanges();
 
@@ -47,8 +68,15 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Empleados",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró el empleado con id {id}"
+            });
 
-                var entidad = new Empleados();
+            var entidad = new Empleados();
                 entidad.Id = id;
                 var entry = this.iConexion!.Entry<Empleados>(entidad);
                 entry.State = EntityState.Deleted;

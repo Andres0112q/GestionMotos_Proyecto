@@ -13,8 +13,15 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Estado Orden Compras",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron los estados de orden de compras"
+            });
 
-                return this.iConexion.EstadoOrdenCompras!.ToList();
+            return this.iConexion.EstadoOrdenCompras!.ToList();
             }
 
             public EstadoOrdenCompras Guardar(EstadoOrdenCompras entidad)
@@ -24,8 +31,15 @@ namespace lib_gestionMotos.Implementaciones
 
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Estado Orden Compras",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó el estado de orden de compras con id {entidad.Id}"
+            });
 
-                this.iConexion.EstadoOrdenCompras!.Add(entidad!);
+            this.iConexion.EstadoOrdenCompras!.Add(entidad!);
                 this.iConexion.SaveChanges();
                 return entidad;
             }
@@ -33,9 +47,16 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Estado Orden Compras",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó el estado de orden de compras con id {entidad.Id}"
+            });
 
 
-                var entry = this.iConexion!.Entry<EstadoOrdenCompras>(entidad);
+            var entry = this.iConexion!.Entry<EstadoOrdenCompras>(entidad);
                 entry.State = EntityState.Modified;
                 this.iConexion!.SaveChanges();
 
@@ -46,8 +67,15 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Estado Orden Compras",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró el estado de orden de compras con id {id}"
+            });
 
-                var entidad = new EstadoOrdenCompras();
+            var entidad = new EstadoOrdenCompras();
                 entidad.Id = id;
                 var entry = this.iConexion!.Entry<EstadoOrdenCompras>(entidad);
                 entry.State = EntityState.Deleted;

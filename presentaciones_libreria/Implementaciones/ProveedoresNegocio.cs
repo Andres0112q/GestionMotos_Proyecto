@@ -66,7 +66,7 @@ namespace presentaciones_libreria.Implementaciones
             return JsonConvert.DeserializeObject<Proveedores>(
                 respuesta["Valor"].ToString()!)!;
         }
-        public Proveedores Borrar(Proveedores entidad)
+        public bool Borrar(Proveedores entidad)
         {
             if (entidad.Id == 0)
                 throw new Exception("No existe el registro");
@@ -81,9 +81,9 @@ namespace presentaciones_libreria.Implementaciones
             var respuesta = task.Result;
 
             if (!respuesta.ContainsKey("Valor"))
-                return new Proveedores();
+                return false;
 
-            return JsonConvert.DeserializeObject<Proveedores>(
+            return JsonConvert.DeserializeObject<bool>(
                 respuesta["Valor"].ToString()!)!;
         }
     }

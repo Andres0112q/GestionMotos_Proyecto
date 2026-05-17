@@ -7,6 +7,6 @@ namespace presentaciones_libreria.Interfaces
         List<UnidadesDeMedidas> Consultar();
         UnidadesDeMedidas Guardar(UnidadesDeMedidas entidad);
         UnidadesDeMedidas Modificar(UnidadesDeMedidas entidad);
-        UnidadesDeMedidas Borrar(UnidadesDeMedidas entidad);
+        bool Borrar(UnidadesDeMedidas entidad);
     }
 }

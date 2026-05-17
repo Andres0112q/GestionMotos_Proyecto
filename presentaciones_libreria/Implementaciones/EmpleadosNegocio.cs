@@ -68,7 +68,7 @@ namespace presentaciones_libreria.Implementaciones
             return JsonConvert.DeserializeObject<Empleados>(
                 respuesta["Valor"].ToString()!)!;
         }
-        public Empleados Borrar(Empleados entidad)
+        public bool Borrar(Empleados entidad)
         {
             if (entidad.Id == 0)
                 throw new Exception("No existe el registro");
@@ -83,9 +83,9 @@ namespace presentaciones_libreria.Implementaciones
             var respuesta = task.Result;
 
             if (!respuesta.ContainsKey("Valor"))
-                return new Empleados();
+                return false;
 
-            return JsonConvert.DeserializeObject<Empleados>(
+            return JsonConvert.DeserializeObject<bool>(
                 respuesta["Valor"].ToString()!)!;
         }
     }

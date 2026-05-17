@@ -7,6 +7,6 @@ namespace presentaciones_libreria.Interfaces
         List<MovimientosInventarios> Consultar();
         MovimientosInventarios Guardar(MovimientosInventarios entidad);
         MovimientosInventarios Modificar(MovimientosInventarios entidad);
-        MovimientosInventarios Borrar(MovimientosInventarios entidad);
+        bool Borrar(MovimientosInventarios entidad);
     }
 }

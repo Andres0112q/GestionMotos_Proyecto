@@ -13,6 +13,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Facturas",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron las facturas"
+            });
 
             return this.iConexion.Facturas!.ToList();
         }
@@ -24,6 +31,13 @@ namespace lib_gestionMotos.Implementaciones
 
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Facturas",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó la factura con id {entidad.Id}"
+            });
 
             this.iConexion.Facturas!.Add(entidad!);
             this.iConexion.SaveChanges();
@@ -33,6 +47,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Facturas",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó la factura con id {entidad.Id}"
+            });
 
 
             var entry = this.iConexion!.Entry<Facturas>(entidad);
@@ -46,7 +67,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Facturas",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró la factura con id {id}"
+            });
             var entidad = new Facturas();
             entidad.Id = id;
             var entry = this.iConexion!.Entry<Facturas>(entidad);

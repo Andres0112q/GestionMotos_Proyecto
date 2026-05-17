@@ -145,3 +145,14 @@ body {
     margin: auto;
     background: white;
 }
+
+
+    .container path {
+        fill: #ff0000;
+        stroke: #ffd800;
+        stroke-width: 2px;
+    }
+
+    .container :hover {
+        fill: #ff7070
+    }

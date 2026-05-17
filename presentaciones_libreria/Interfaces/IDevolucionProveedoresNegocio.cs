@@ -7,6 +7,6 @@ namespace presentaciones_libreria.Interfaces
         List<DevolucionProveedores> Consultar();
         DevolucionProveedores Guardar(DevolucionProveedores entidad);
         DevolucionProveedores Modificar(DevolucionProveedores entidad);
-        DevolucionProveedores Borrar(DevolucionProveedores entidad);
+        bool Borrar(DevolucionProveedores entidad);
     }
 }

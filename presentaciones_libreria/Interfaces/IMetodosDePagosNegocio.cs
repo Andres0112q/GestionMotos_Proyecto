@@ -8,6 +8,6 @@ namespace presentaciones_libreria.Interfaces
         List<MetodosDePagos> Consultar();
         MetodosDePagos Guardar(MetodosDePagos entidad);
         MetodosDePagos Modificar(MetodosDePagos entidad);
-        MetodosDePagos Borrar(MetodosDePagos entidad);
+        bool Borrar(MetodosDePagos entidad);
     }
 }

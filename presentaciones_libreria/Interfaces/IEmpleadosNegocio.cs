@@ -8,6 +8,6 @@ namespace presentaciones_libreria.Interfaces
         List<Empleados> Consultar();
         Empleados Guardar(Empleados entidad);
         Empleados Modificar(Empleados entidad);
-        Empleados Borrar(Empleados entidad);
+        bool Borrar(Empleados entidad);
     }
 }

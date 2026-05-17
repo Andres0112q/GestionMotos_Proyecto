@@ -37,16 +37,7 @@
                        asp-for="@Model.Moto!.Id" />
 
                 <div>
-                    <div class="form-group">
-                        <label>
-                            Id
-                        </label>
-                        <div class="col-6">
-                            <input id="inId"
-                                   class="cts_forms form-control"
-                                   asp-for="@Model.Moto!.Id" />
-                        </div>
-                    </div>
+                    
                     <div class="form-group">
                         <label>
                             Placa
@@ -59,22 +50,28 @@
                     </div>
                     <div class="form-group">
                         <label>
-                            ModelosId
+                            Modelos
                         </label>
                         <div class="col-6">
-                            <input id="inModelosId"
-                                   class="cts_forms form-control"
-                                   asp-for="@Model.Moto!.ModelosId" />
+                            <select asp-for="@Model.Moto!.ModelosId">
+                                @foreach (var v in Model.ListaModelos!)@*esto nos muestra el listado de Modelos en el select del formulario *@
+                                {
+                                    <option value="@v.Id">@v.Referencia - @v.Id</option>
+                                }
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>
-                            MarcasId
+                            Marcas
                         </label>
                         <div class="col-6">
-                            <input id="inMarcasId"
-                                   class="cts_forms form-control"
-                                   asp-for="@Model.Moto!.MarcasId" />
+                            <select asp-for="@Model.Moto!.MarcasId">
+                                @foreach (var v in Model.ListaMarcas!)@*esto nos muestra el listado de Marcas en el select del formulario *@
+                                {
+                                    <option value="@v.Id">@v.Nombre - @v.Id</option>
+                                }
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -130,21 +127,12 @@
             {
                 <table class="tb_data table table-striped table-bordered table-hover">
                     <tr>
-                        <th>
-                            Id
-                        </th>
-                        <th>
-                            Placa
-                        </th>
-                        <th>
-                            ModelosId
-                        </th>
-                        <th class="cl_hidden">
-                            MarcasId
-                        </th>
-                        <th class="cl_hidden">
-                            Valor
-                        </th>
+                        <th>Id</th>
+                        <th>Placa</th>
+                        <th>Modelos</th>
+                        <th >Marcas</th>
+                        <th > Valor</th>
+                        <th>Acciones</th>
                     </tr>
                     @foreach (var elemento in Model.Lista)
                     {
@@ -156,12 +144,12 @@
                                 @elemento.Placa
                             </td>
                             <td>
-                                @elemento.ModelosId
+                                @elemento._Modelos?.Referencia
                             </td>
-                            <td class="cl_hidden">
-                                @elemento.MarcasId
+                            <td >
+                                @elemento._Marcas?.Nombre
                             </td>
-                            <td class="cl_hidden">
+                            <td>
                                 @elemento.Valor
                             </td>
                             <td>

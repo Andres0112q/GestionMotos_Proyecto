@@ -13,6 +13,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Garantias",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron las garantias"
+            });
 
             return this.iConexion.Garantias!.ToList();
         }
@@ -24,7 +31,13 @@ namespace lib_gestionMotos.Implementaciones
 
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Garantias",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó la garantia con id {entidad.Id}"
+            });
             this.iConexion.Garantias!.Add(entidad!);
             this.iConexion.SaveChanges();
             return entidad;
@@ -33,7 +46,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Garantias",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó la garantia con id {entidad.Id}"
+            });
 
             var entry = this.iConexion!.Entry<Garantias>(entidad);
             entry.State = EntityState.Modified;
@@ -46,6 +65,13 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Garantias",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró la garantia con id {id}"
+            });
 
             var entidad = new Garantias();
             entidad.Id = id;

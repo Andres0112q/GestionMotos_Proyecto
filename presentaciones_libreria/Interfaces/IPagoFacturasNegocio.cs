@@ -7,6 +7,6 @@ namespace presentaciones_libreria.Interfaces
         List<PagoFacturas> Consultar();
         PagoFacturas Guardar(PagoFacturas entidad);
         PagoFacturas Modificar(PagoFacturas entidad);
-        PagoFacturas Borrar(PagoFacturas entidad);
+        bool Borrar(PagoFacturas entidad);
     }
 }

@@ -66,7 +66,7 @@ namespace presentaciones_libreria.Implementaciones
             return JsonConvert.DeserializeObject<Modelos>(
                 respuesta["Valor"].ToString()!)!;
         }
-        public Modelos Borrar(Modelos entidad)
+        public bool Borrar(Modelos entidad)
         {
             if (entidad.Id == 0)
                 throw new Exception("No existe el registro");
@@ -81,9 +81,9 @@ namespace presentaciones_libreria.Implementaciones
             var respuesta = task.Result;
 
             if (!respuesta.ContainsKey("Valor"))
-                return new Modelos();
+                return false;
 
-            return JsonConvert.DeserializeObject<Modelos>(
+            return JsonConvert.DeserializeObject<bool>(
                 respuesta["Valor"].ToString()!)!;
         }
     }

@@ -68,8 +68,9 @@ namespace presentacionmotos_aspnetcore.Pages
         {
             try
             {
-                if (Marca == null) return;
-                Marca = iMarcasNegocio!.Borrar(Marca!);
+                if (Marca == null) 
+                    return;
+                iMarcasNegocio!.Borrar(Marca!);
                 OnPostBtRefrescar();
             }
             catch (Exception ex) { ViewData["Mensaje"] = ex.Message; }
