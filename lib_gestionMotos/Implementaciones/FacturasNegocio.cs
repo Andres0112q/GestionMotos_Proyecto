@@ -21,7 +21,7 @@ namespace lib_gestionMotos.Implementaciones
                 Descripcion = "Se consultaron las facturas"
             });
 
-            return this.iConexion.Facturas!.ToList();
+            return this.iConexion.Facturas!.Include(x => x._Clientes).Include(x => x._Empleados).Include(x => x.Pagos).ToList();
         }
 
         public Facturas Guardar(Facturas entidad)

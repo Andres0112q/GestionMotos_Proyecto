@@ -1,0 +1,189 @@
+﻿@page
+@model PagoFacturasModel
+@{
+    ViewData["Title"] = "Pago Facturas";
+}
+
+<center>
+    <div>
+        <form method="POST"
+              enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <div align="left">
+                <h3>PagoFacturas</h3>
+            </div>
+
+            <div>
+                <input type="submit"
+                       value="Refrescar"
+                       class="btn btn-secondary"
+                       asp-page-handler="BtRefrescar" />
+                <input type="submit"
+                       value="Nuevo"
+                       class="btn btn-secondary"
+                       asp-page-handler="BtNuevo"
+                       disabled="@(Model.PagoFactura != null)" />
+                <input type="submit"
+                       value="Guardar"
+                       class="btn btn-secondary"
+                       asp-page-handler="BtGuardar"
+                       disabled="@(Model.PagoFactura == null)" />
+            </div>
+
+            @if (Model.PagoFactura != null)
+            {
+                <input type="hidden"
+                       asp-for="@Model.PagoFactura!.Id" />
+
+                <div>
+                    
+                    <div class="form-group">
+                        <label>
+                            Monto
+                        </label>
+                        <div class="col-6">
+                            <input id="inMonto"
+                                   class="cts_forms form-control"
+                                   asp-for="@Model.PagoFactura!.Monto" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Fecha
+                        </label>
+                        <div class="col-6">
+                            <input id="inFecha"
+                                   class="cts_forms form-control"
+                                   asp-for="@Model.PagoFactura!.Fecha" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Comprobante
+                        </label>
+                        <div class="col-6">
+                            <input id="inComprobante"
+                                   class="cts_forms form-control"
+                                   asp-for="@Model.PagoFactura!.Comprobante" />
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label>
+                            Facturas
+                        </label>
+                        <div class="col-6">
+                            <select asp-for="@Model.PagoFactura!.FacturasId">
+                                @foreach (var v in Model.ListaFacturas!)@*esto nos muestra el listado de Facturas en el select del formulario *@
+                                {
+                                    <option value="@v.Id">@v.Numero - @v.Id</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Metodos de pago
+                        </label>
+                        <div class="col-6">
+                            <select asp-for="@Model.PagoFactura!.MetodosDePagosId">
+                                @foreach (var v in Model.ListaMetodosDePagos!)@*esto nos muestra el listado de Metodos de Pagos en el select del formulario *@
+                                {
+                                    <option value="@v.Id">@v.Metodo - @v.Id</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            }
+            
+            @if (ViewData.ContainsKey("Mensaje"))
+            {
+                @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+                ;
+            }
+
+            @if (Model.PagoFactura != null && Model.Borrando)
+            {
+                <div class='popup'>
+                    <div class='pp_ms_inner'>
+                        <div style='width:95%'>
+                            <h2 align="left">
+                                Mensaje
+                            </h2>
+
+                            <h6 align="left">
+                                Desea borrar el pago de la factura con id?
+                            </h6>
+                            <h6 align="left">
+                                @Model.PagoFactura!.Id
+                            </h6>
+                            
+                            <input type="submit"
+                                   value="Cerrar"
+                                   asp-page-handler="BtCerrar"
+                                   class="btn btn-secondary" />
+                            <input type="submit"
+                                   value="Borrar"
+                                   asp-page-handler="BtBorrar"
+                                   class="btn btn-secondary" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model != null &&
+                 Model.Lista != null &&
+                 Model.Lista.Count > 0)
+            {
+                <table class="tb_data table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>Id</th>
+                        <th>Monto</th>
+                        <th>Fecha</th>
+                        <th>Comprobante</th>
+                        <th>Numero factura</th>
+						<th>Metodo de pago</th>
+                        <th>Acciones</th>
+                    </tr>
+                    @foreach (var elemento in Model.Lista)
+                    {
+                        <tr>
+                            <td>
+                                @elemento.Id
+                            </td>
+                            <td>
+                                @elemento.Monto.ToString("C")
+                            </td>
+                            <td>
+                                @elemento.Fecha.ToString("dd/MM/yyyy")
+                            </td>
+                            <td >
+                                @elemento.Comprobante
+                            </td>
+                            <td>
+                                @elemento._Facturas?.Numero
+                            </td>
+                            <td>
+							@elemento._MetodosDePagos?.Metodo
+                            </td>
+                            <td>
+                                <input type="submit"
+                                       value="Modicar"
+                                       asp-page-handler="BtModificar"
+                                       class="btn btn-secondary"
+                                       asp-route-data="@elemento.Id" />
+                                <input type="submit"
+                                       value="Borrar"
+                                       asp-page-handler="BtBorrarVal"
+                                       class="btn btn-secondary"
+                                       asp-route-data="@elemento.Id" />
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </form>
+    </div>
+</center>

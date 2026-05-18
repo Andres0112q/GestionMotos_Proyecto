@@ -4,7 +4,7 @@ using presentaciones_libreria.Interfaces;
 
 namespace presentaciones_libreria.Implementaciones
 {
-    public class PagoFacturasNegocio
+    public class PagoFacturasNegocio : IPagoFacturasNegocio
     {
         private IComunicaciones? iComunicaciones;
 

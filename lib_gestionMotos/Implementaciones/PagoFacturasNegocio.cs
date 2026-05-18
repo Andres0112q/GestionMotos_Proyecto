@@ -15,7 +15,7 @@ namespace lib_gestionMotos.Implementaciones
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
 
-            return this.iConexion.PagoFacturas!.ToList();
+            return this.iConexion.PagoFacturas!.Include(x => x._Facturas).Include(x => x._MetodosDePagos).ToList();
         }
 
         public PagoFacturas Guardar(PagoFacturas entidad)

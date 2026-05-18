@@ -227,7 +227,9 @@ INSERT INTO Usuarios (Nombre, Contraseña, RolesId) VALUES
 INSERT INTO Sucursales (Ciudad, Direccion) VALUES
 ('Medellín', 'Calle 10 #20-30'),
 ('Bogotá', 'Carrera 7 #50-20'),
-('Cali', 'Avenida 6 #43-12')
+('Cali', 'Avenida 6 #43-12'),
+('Barranquilla', 'Carrera 45 #70-15'),
+('Cúcuta', 'Avenida 0 #10-25');
 
 INSERT INTO CategoriaRepuestos (Nombre, Descripcion, FechaCreacion, Activo) VALUES
 ('Motor', 'Repuestos internos', '2026-03-17', 1),
@@ -365,6 +367,6 @@ INSERT INTO Facturas (Numero, Total, ClientesId, EmpleadosId, FechaVencimiento) 
 INSERT INTO PagoFacturas (Monto, Fecha, Comprobante, FacturasId, MetodosDePagosId) VALUES
 (850000.00,  '2026-01-20', 'COMP-001', 1, 1),
 (600000.00,  '2026-01-25', 'COMP-002', 2, 2),
-(450000.00,  '2026-02-01', NULL,       3, 1),
+(450000.00,  '2026-02-01', 'COMP-004', 3, 1),
 (2300000.00, '2026-02-10', 'COMP-003', 4, 3),
-(670000.00,  '2026-02-15', NULL,       5, 2)
+(670000.00,  '2026-02-15', 'COMP-005', 5, 2)
