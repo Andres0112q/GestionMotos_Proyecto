@@ -14,6 +14,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Pago Facturas",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron los pagos de facturas",
+                UsuariosId = 1
+            });
 
             return this.iConexion.PagoFacturas!.Include(x => x._Facturas).Include(x => x._MetodosDePagos).ToList();
         }
@@ -25,6 +33,14 @@ namespace lib_gestionMotos.Implementaciones
 
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Pago Facturas",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó el pago de factura con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
             this.iConexion.PagoFacturas!.Add(entidad!);
             this.iConexion.SaveChanges();
@@ -34,6 +50,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Pago Facturas",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó el pago de factura con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
 
             var entry = this.iConexion!.Entry<PagoFacturas>(entidad);
@@ -47,6 +71,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Pago Facturas",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró el pago de factura con id {id}",
+                UsuariosId = 1
+            });
 
             var entidad = new PagoFacturas();
             entidad.Id = id;

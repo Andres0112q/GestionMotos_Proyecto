@@ -19,7 +19,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Empleados",
                 Accion = "Consultar",
                 Fecha = DateTime.Now,
-                Descripcion = "Se consultaron los empleados"
+                Descripcion = "Se consultaron los empleados",
+                UsuariosId = 1
             });
 
             return this.iConexion.Empleados!.ToList();
@@ -37,7 +38,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Empleados",
                 Accion = "Guardar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se guardó el empleado con id {entidad.Id}"
+                Descripcion = $"Se guardó el empleado con id {entidad.Id}",
+                UsuariosId = 1
             });
 
             this.iConexion.Empleados!.Add(entidad!);
@@ -53,7 +55,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Empleados",
                 Accion = "Modificar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se modificó el empleado con id {entidad.Id}"
+                Descripcion = $"Se modificó el empleado con id {entidad.Id}",
+                UsuariosId = 1
             });
 
 
@@ -73,7 +76,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Empleados",
                 Accion = "Borrar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se borró el empleado con id {id}"
+                Descripcion = $"Se borró el empleado con id {id}",
+                UsuariosId = 1
             });
 
             var entidad = new Empleados();

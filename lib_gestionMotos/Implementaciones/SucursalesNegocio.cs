@@ -12,6 +12,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Sucursales",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron las sucursales",
+                UsuariosId = 1
+            });
 
             return this.iConexion.Sucursales!.ToList();
         }
@@ -23,6 +31,14 @@ namespace lib_gestionMotos.Implementaciones
 
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Sucursales",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó la sucursal con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
             this.iConexion.Sucursales!.Add(entidad!);
             this.iConexion.SaveChanges();
@@ -32,7 +48,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
-
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Sucursales",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó la sucursal con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
             var entry = this.iConexion!.Entry<Sucursales>(entidad);
             entry.State = EntityState.Modified;
@@ -45,6 +68,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Sucursales",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró la sucursal con id {id}",
+                UsuariosId = 1
+            });
 
             var entidad = new Sucursales();
             entidad.Id = id;

@@ -1,5 +1,5 @@
 ﻿@page
-@model PagoFacturasModel
+@model MetodosDePagosModel
 @{
     ViewData["Title"] = "Pago Facturas";
 }
@@ -11,7 +11,7 @@
             @Html.AntiForgeryToken()
 
             <div align="left">
-                <h3>Pago Facturas</h3>
+                <h3>Metodos de pagos</h3>
             </div>
 
             <div>
@@ -23,78 +23,63 @@
                        value="Nuevo"
                        class="btn btn-secondary"
                        asp-page-handler="BtNuevo"
-                       disabled="@(Model.PagoFactura != null)" />
+                       disabled="@(Model.MetodosDePago != null)" />
                 <input type="submit"
                        value="Guardar"
                        class="btn btn-secondary"
                        asp-page-handler="BtGuardar"
-                       disabled="@(Model.PagoFactura == null)" />
+                       disabled="@(Model.MetodosDePago == null)" />
             </div>
 
-            @if (Model.PagoFactura != null)
+            @if (Model.MetodosDePago != null)
             {
                 <input type="hidden"
-                       asp-for="@Model.PagoFactura!.Id" />
+                       asp-for="@Model.MetodosDePago!.Id" />
 
                 <div>
                     
                     <div class="form-group">
                         <label>
-                            Monto
+                            Metodo
                         </label>
                         <div class="col-6">
-                            <input id="inMonto"
+                            <input id="inMetodo"
                                    class="cts_forms form-control"
-                                   asp-for="@Model.PagoFactura!.Monto" />
+                                   asp-for="@Model.MetodosDePago!.Metodo" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label>
-                            Fecha
+                            Descripcion
                         </label>
                         <div class="col-6">
-                            <input id="inFecha"
+                            <input id="inDescripcion"
                                    class="cts_forms form-control"
-                                   asp-for="@Model.PagoFactura!.Fecha" />
+                                   asp-for="@Model.MetodosDePago!.Descripcion" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label>
-                            Comprobante
+                            Es digital
                         </label>
                         <div class="col-6">
-                            <input id="inComprobante"
+                            <input type="checkbox" id="inEsDigital"
+                                   
+                                   asp-for="@Model.MetodosDePago!.EsDigital" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Referencia interna
+                        </label>
+                        <div class="col-6">
+                            <input id="inReferenciaInterna"
                                    class="cts_forms form-control"
-                                   asp-for="@Model.PagoFactura!.Comprobante" />
+                                   asp-for="@Model.MetodosDePago!.ReferenciaInterna" />
                         </div>
                     </div>
                    
-                    <div class="form-group">
-                        <label>
-                            Facturas
-                        </label>
-                        <div class="col-6">
-                            <select asp-for="@Model.PagoFactura!.FacturasId">
-                                @foreach (var v in Model.ListaFacturas!)@*esto nos muestra el listado de Facturas en el select del formulario *@
-                                {
-                                    <option value="@v.Id">@v.Numero - @v.Id</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            Metodos de pago
-                        </label>
-                        <div class="col-6">
-                            <select asp-for="@Model.PagoFactura!.MetodosDePagosId">
-                                @foreach (var v in Model.ListaMetodosDePagos!)@*esto nos muestra el listado de Metodos de Pagos en el select del formulario *@
-                                {
-                                    <option value="@v.Id">@v.Metodo - @v.Id</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
+                   
                 </div>
             }
             
@@ -104,7 +89,7 @@
                 ;
             }
 
-            @if (Model.PagoFactura != null && Model.Borrando)
+            @if (Model.MetodosDePago != null && Model.Borrando)
             {
                 <div class='popup'>
                     <div class='pp_ms_inner'>
@@ -114,10 +99,10 @@
                             </h2>
 
                             <h6 align="left">
-                                Desea borrar el pago de la factura con id?
+                                Desea borrar el metodo de pago con id?
                             </h6>
                             <h6 align="left">
-                                @Model.PagoFactura!.Id
+                                @Model.MetodosDePago!.Id
                             </h6>
                             
                             <input type="submit"
@@ -140,11 +125,10 @@
                 <table class="tb_data table table-striped table-bordered table-hover">
                     <tr>
                         <th>Id</th>
-                        <th>Monto</th>
-                        <th>Fecha</th>
-                        <th>Comprobante</th>
-                        <th>Numero factura</th>
-						<th>Metodo de pago</th>
+                        <th>Metodo</th>
+                        <th>Descripcion</th>
+                        <th>Es digital</th>
+                        <th>Referencia interna</th>
                         <th>Acciones</th>
                     </tr>
                     @foreach (var elemento in Model.Lista)
@@ -154,19 +138,16 @@
                                 @elemento.Id
                             </td>
                             <td>
-                                @elemento.Monto.ToString("C")
+                                @elemento.Metodo
                             </td>
                             <td>
-                                @elemento.Fecha.ToString("dd/MM/yyyy")
+                                @elemento.Descripcion
                             </td>
                             <td >
-                                @elemento.Comprobante
+                                @elemento.EsDigital.ToString()
                             </td>
                             <td>
-                                @elemento._Facturas?.Numero
-                            </td>
-                            <td>
-							@elemento._MetodosDePagos?.Metodo
+                                @elemento.ReferenciaInterna
                             </td>
                             <td>
                                 <input type="submit"

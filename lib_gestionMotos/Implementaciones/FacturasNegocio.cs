@@ -18,7 +18,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Facturas",
                 Accion = "Consultar",
                 Fecha = DateTime.Now,
-                Descripcion = "Se consultaron las facturas"
+                Descripcion = "Se consultaron las facturas",
+                UsuariosId = 1
             });
 
             return this.iConexion.Facturas!.Include(x => x._Clientes).Include(x => x._Empleados).Include(x => x.Pagos).ToList();
@@ -36,7 +37,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Facturas",
                 Accion = "Guardar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se guardó la factura con id {entidad.Id}"
+                Descripcion = $"Se guardó la factura con id {entidad.Id}",
+                UsuariosId = 1
             });
 
             this.iConexion.Facturas!.Add(entidad!);
@@ -52,7 +54,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Facturas",
                 Accion = "Modificar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se modificó la factura con id {entidad.Id}"
+                Descripcion = $"Se modificó la factura con id {entidad.Id}",
+                UsuariosId = 1
             });
 
 
@@ -72,7 +75,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Facturas",
                 Accion = "Borrar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se borró la factura con id {id}"
+                Descripcion = $"Se borró la factura con id {id}",
+                UsuariosId = 1
             });
             var entidad = new Facturas();
             entidad.Id = id;

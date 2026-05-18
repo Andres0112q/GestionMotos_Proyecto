@@ -19,7 +19,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Categoria Repuestos",
                 Accion = "Consultar",
                 Fecha = DateTime.Now,
-                Descripcion = "Se consultaron las categorias de repuestos"
+                Descripcion = "Se consultaron las categorias de repuestos",
+                UsuariosId = 1
             });
 
             return this.iConexion.CategoriaRepuestos!.ToList();
@@ -37,7 +38,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Categoria Repuestos",
                 Accion = "Guardar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se guardo la categoria de repuestos con nombre {entidad.Nombre}"
+                Descripcion = $"Se guardo la categoria de repuestos con nombre {entidad.Nombre}",
+                UsuariosId = 1
             });
 
 
@@ -56,7 +58,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Categoria Repuestos",
                 Accion = "Modificar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se modificó la categoria de repuestos con id {entidad.Id}"
+                Descripcion = $"Se modificó la categoria de repuestos con id {entidad.Id}",
+                UsuariosId = 1
             });
 
 
@@ -77,7 +80,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Categoria Repuestos",
                 Accion = "Borrar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se borró la categoria de repuestos con id {id}"
+                Descripcion = $"Se borró la categoria de repuestos con id {id}",
+                UsuariosId = 1
             });
 
 

@@ -19,7 +19,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Movimientos Inventarios",
                 Accion = "Consultar",
                 Fecha = DateTime.Now,
-                Descripcion = "Se consultaron los movimientos de inventario"
+                Descripcion = "Se consultaron los movimientos de inventario",
+                UsuariosId = 1
             });
 
             return this.iConexion.MovimientosInventarios!.ToList();
@@ -37,7 +38,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Movimientos Inventarios",
                 Accion = "Guardar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se guardó el movimiento de inventario con id {entidad.Id}"
+                Descripcion = $"Se guardó el movimiento de inventario con id {entidad.Id}",
+                UsuariosId = 1
             });
             this.iConexion.MovimientosInventarios!.Add(entidad!);
             this.iConexion.SaveChanges();
@@ -71,7 +73,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Movimientos Inventarios",
                 Accion = "Modificar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se modificó el movimiento de inventario con id {entidad.Id}"
+                Descripcion = $"Se modificó el movimiento de inventario con id {entidad.Id}",
+                UsuariosId = 1
             });
 
             var entry = this.iConexion!.Entry<MovimientosInventarios>(entidad);
@@ -90,7 +93,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Movimientos Inventarios",
                 Accion = "Borrar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se borró el movimiento de inventario con id {id}"
+                Descripcion = $"Se borró el movimiento de inventario con id {id}",
+                UsuariosId = 1
             });
             var entidad = new MovimientosInventarios();
             entidad.Id = id;

@@ -19,7 +19,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Devolucion Proveedores",
                 Accion = "Consultar",
                 Fecha = DateTime.Now,
-                Descripcion = "Se consultaron las devoluciones de proveedores"
+                Descripcion = "Se consultaron las devoluciones de proveedores",
+                UsuariosId = 1
             });
 
             return this.iConexion.DevolucionProveedores!.ToList();
@@ -37,7 +38,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Devolucion Proveedores",
                 Accion = "Guardar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se guardó la devolución de proveedores con id {entidad.Id}"
+                Descripcion = $"Se guardó la devolución de proveedores con id {entidad.Id}",
+                UsuariosId = 1
             });
 
             this.iConexion.DevolucionProveedores!.Add(entidad!);
@@ -53,7 +55,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Devolucion Proveedores",
                 Accion = "Modificar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se modificó la devolución de proveedores con id {entidad.Id}"
+                Descripcion = $"Se modificó la devolución de proveedores con id {entidad.Id}",
+                UsuariosId = 1
             });
 
 
@@ -73,7 +76,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Devolucion Proveedores",
                 Accion = "Borrar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se borró la devolución de proveedores con id {id}"
+                Descripcion = $"Se borró la devolución de proveedores con id {id}",
+                UsuariosId = 1
             });
 
             var entidad = new DevolucionProveedores();

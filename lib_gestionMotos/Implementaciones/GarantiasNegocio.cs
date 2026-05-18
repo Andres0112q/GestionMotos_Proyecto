@@ -18,7 +18,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Garantias",
                 Accion = "Consultar",
                 Fecha = DateTime.Now,
-                Descripcion = "Se consultaron las garantias"
+                Descripcion = "Se consultaron las garantias",
+                UsuariosId = 1
             });
 
             return this.iConexion.Garantias!.ToList();
@@ -36,7 +37,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Garantias",
                 Accion = "Guardar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se guardó la garantia con id {entidad.Id}"
+                Descripcion = $"Se guardó la garantia con id {entidad.Id}",
+                UsuariosId = 1
             });
             this.iConexion.Garantias!.Add(entidad!);
             this.iConexion.SaveChanges();
@@ -51,7 +53,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Garantias",
                 Accion = "Modificar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se modificó la garantia con id {entidad.Id}"
+                Descripcion = $"Se modificó la garantia con id {entidad.Id}",
+                UsuariosId = 1
             });
 
             var entry = this.iConexion!.Entry<Garantias>(entidad);
@@ -70,7 +73,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Garantias",
                 Accion = "Borrar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se borró la garantia con id {id}"
+                Descripcion = $"Se borró la garantia con id {id}",
+                UsuariosId = 1
             });
 
             var entidad = new Garantias();

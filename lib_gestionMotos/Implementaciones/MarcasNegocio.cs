@@ -8,7 +8,7 @@ namespace lib_gestionMotos.Implementaciones
     public class MarcasNegocio : IMarcasNegocio
     {
         private IConexion? iConexion;
-        //CRUD (CREATE, READ, UPDATE, DELETE)
+        
         public List<Marcas> Consultar()
         {
             this.iConexion = new Conexion();
@@ -18,7 +18,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Marcas",
                 Accion = "Consultar",
                 Fecha = DateTime.Now,
-                Descripcion = "Se consultaron las marcas"
+                Descripcion = "Se consultaron las marcas",
+                UsuariosId = 1
             });
             return this.iConexion.Marcas!.ToList();
         }
@@ -34,7 +35,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Marcas",
                 Accion = "Guardar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se guardó la marca con id {entidad.Id}"
+                Descripcion = $"Se guardó la marca con id {entidad.Id}",
+                UsuariosId = 1
             });
             this.iConexion.Marcas!.Add(entidad);
             this.iConexion.SaveChanges();
@@ -73,7 +75,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Marcas",
                 Accion = "Borrar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se borró la marca con id {id}"
+                Descripcion = $"Se borró la marca con id {id}",
+                UsuariosId = 1
             });
             var entidad = new Marcas();
             entidad.Id = id;

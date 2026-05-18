@@ -14,6 +14,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Usuarios",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron los usuarios",
+                UsuariosId = 1
+            });
 
             return this.iConexion.Usuarios!.ToList();
         }
@@ -25,6 +33,14 @@ namespace lib_gestionMotos.Implementaciones
 
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Usuarios",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó el usuario con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
             this.iConexion.Usuarios!.Add(entidad!);
             this.iConexion.SaveChanges();
@@ -34,6 +50,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Usuarios",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó el usuario con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
 
             var entry = this.iConexion!.Entry<Usuarios>(entidad);
@@ -47,6 +71,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Usuarios",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró el usuario con id {id}",
+                UsuariosId = 1
+            });
 
             var entidad = new Usuarios();
             entidad.Id = id;

@@ -14,6 +14,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Orden Compra",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron las ordenes de compra",
+                UsuariosId = 1
+            });
 
             return this.iConexion.OrdenCompras!.ToList();
         }
@@ -25,6 +33,14 @@ namespace lib_gestionMotos.Implementaciones
 
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Orden Compra",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó una orden de compra con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
             this.iConexion.OrdenCompras!.Add(entidad!);
             this.iConexion.SaveChanges();
@@ -34,6 +50,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Orden Compra",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó la orden de compra con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
 
             var entry = this.iConexion!.Entry<OrdenCompras>(entidad);
@@ -47,6 +71,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Orden Compra",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró la orden de compra con id {id}",
+                UsuariosId = 1
+            });
 
             var entidad = new OrdenCompras();
             entidad.Id = id;

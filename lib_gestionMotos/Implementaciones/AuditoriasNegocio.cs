@@ -14,7 +14,7 @@ namespace lib_gestionMotos.Implementaciones
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
 
-            return this.iConexion.Auditorias!.ToList();
+            return this.iConexion.Auditorias!.Include(x => x._Usuarios).ToList();
         }
 
         public Auditorias Guardar(Auditorias entidad)

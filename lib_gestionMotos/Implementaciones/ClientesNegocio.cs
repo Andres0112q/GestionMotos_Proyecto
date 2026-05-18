@@ -21,7 +21,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Clientes",
                 Accion = "Consultar",
                 Fecha = DateTime.Now,
-                Descripcion = "Se consultaron los clientes"
+                Descripcion = "Se consultaron los clientes",
+                UsuariosId = 1
             });
 
 
@@ -40,7 +41,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Clientes",
                 Accion = "Guardar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se guardó el cliente con nombre {entidad.Nombre}"
+                Descripcion = $"Se guardó el cliente con nombre {entidad.Nombre}",
+                UsuariosId = 1
             });
 
 
@@ -57,7 +59,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Clientes",
                 Accion = "Modificar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se modificó el cliente con id {entidad.Id}"
+                Descripcion = $"Se modificó el cliente con id {entidad.Id}",
+                UsuariosId = 1
             });
 
             var entry = this.iConexion!.Entry<Clientes>(entidad);
@@ -76,7 +79,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Clientes",
                 Accion = "Borrar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se borró el cliente con id {id}"
+                Descripcion = $"Se borró el cliente con id {id}",
+                UsuariosId = 1
             });
 
             var entidad = new Clientes();

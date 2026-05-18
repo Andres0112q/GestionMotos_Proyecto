@@ -14,6 +14,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Stock Repuestos",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron los stocks de repuestos",
+                UsuariosId = 1
+            });
 
             return this.iConexion.StockRepuestos!.ToList();
         }
@@ -25,6 +33,14 @@ namespace lib_gestionMotos.Implementaciones
 
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Stock Repuestos",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó el stock de repuesto con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
             this.iConexion.StockRepuestos!.Add(entidad!);
             this.iConexion.SaveChanges();
@@ -34,6 +50,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Stock Repuestos",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó el stock de repuesto con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
 
             var entry = this.iConexion!.Entry<StockRepuestos>(entidad);
@@ -47,6 +71,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Stock Repuestos",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró el stock de repuesto con id {id}",
+                UsuariosId = 1
+            });
 
             var entidad = new StockRepuestos();
             entidad.Id = id;

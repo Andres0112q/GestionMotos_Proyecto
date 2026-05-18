@@ -12,6 +12,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Roles",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron los roles",
+                UsuariosId = 1
+            });
 
             return this.iConexion.Roles!.ToList();
         }
@@ -23,6 +31,14 @@ namespace lib_gestionMotos.Implementaciones
 
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Roles",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó el rol con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
             this.iConexion.Roles!.Add(entidad!);
             this.iConexion.SaveChanges();
@@ -32,6 +48,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Roles",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó el rol con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
 
             var entry = this.iConexion!.Entry<Roles>(entidad);
@@ -45,6 +69,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Roles",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró el rol con id {id}",
+                UsuariosId = 1
+            });
 
             var entidad = new Roles();
             entidad.Id = id;

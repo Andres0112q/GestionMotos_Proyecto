@@ -14,8 +14,16 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Proveedores",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron los proveedores",
+                UsuariosId = 1
+            });
 
-                return this.iConexion.Proveedores!.ToList();
+            return this.iConexion.Proveedores!.ToList();
             }
 
             public Proveedores Guardar(Proveedores entidad)
@@ -25,8 +33,16 @@ namespace lib_gestionMotos.Implementaciones
 
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Proveedores",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó el proveedor con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
-                this.iConexion.Proveedores!.Add(entidad!);
+            this.iConexion.Proveedores!.Add(entidad!);
                 this.iConexion.SaveChanges();
                 return entidad;
             }
@@ -34,9 +50,17 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Proveedores",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó el proveedor con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
 
-                var entry = this.iConexion!.Entry<Proveedores>(entidad);
+            var entry = this.iConexion!.Entry<Proveedores>(entidad);
                 entry.State = EntityState.Modified;
                 this.iConexion!.SaveChanges();
 
@@ -47,8 +71,16 @@ namespace lib_gestionMotos.Implementaciones
             {
                 this.iConexion = new Conexion();
                 this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Proveedores",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró el proveedor con id {id}",
+                UsuariosId = 1
+            });
 
-                var entidad = new Proveedores();
+            var entidad = new Proveedores();
                 entidad.Id = id;
                 var entry = this.iConexion!.Entry<Proveedores>(entidad);
                 entry.State = EntityState.Deleted;

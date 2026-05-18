@@ -14,6 +14,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Unidades de medidas",
+                Accion = "Consultar",
+                Fecha = DateTime.Now,
+                Descripcion = "Se consultaron las unidades de medidas",
+                UsuariosId = 1
+            });
 
             return this.iConexion.UnidadesDeMedidas!.ToList();
 
@@ -25,6 +33,14 @@ namespace lib_gestionMotos.Implementaciones
                 throw new Exception("Ya se guardo");
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Unidades de medidas",
+                Accion = "Guardar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se guardó la unidad de medida con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
             this.iConexion.UnidadesDeMedidas!.Add(entidad);
             this.iConexion.SaveChanges();
@@ -35,6 +51,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Unidades de medidas",
+                Accion = "Modificar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se modificó la unidad de medida con id {entidad.Id}",
+                UsuariosId = 1
+            });
 
             var entry = this.iConexion.Entry<UnidadesDeMedidas>(entidad);
             entry.State = EntityState.Modified;
@@ -48,6 +72,14 @@ namespace lib_gestionMotos.Implementaciones
         {
             this.iConexion = new Conexion();
             this.iConexion.StringConexion = Configuraciones.obtener("StringConexion");
+            this.iConexion.Auditorias!.Add(new Auditorias
+            {
+                Entidad = "Unidades de medidas",
+                Accion = "Borrar",
+                Fecha = DateTime.Now,
+                Descripcion = $"Se borró la unidad de medida con id {id}",
+                UsuariosId = 1
+            });
 
             var entidad = new UnidadesDeMedidas();
             entidad.Id = id;

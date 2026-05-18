@@ -19,7 +19,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Detalle Devoluciones",
                 Accion = "Consultar",
                 Fecha = DateTime.Now,
-                Descripcion = "Se consultaron los detalles de devoluciones"
+                Descripcion = "Se consultaron los detalles de devoluciones",
+                UsuariosId = 1
             });
 
             return this.iConexion.DetalleDevoluciones!.ToList();
@@ -37,7 +38,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Detalle Devoluciones",
                 Accion = "Guardar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se guardó el detalle de devoluciones con id {entidad.Id}"
+                Descripcion = $"Se guardó el detalle de devoluciones con id {entidad.Id}",
+                UsuariosId = 1
             });
 
             this.iConexion.DetalleDevoluciones!.Add(entidad!);
@@ -53,7 +55,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Detalle Devoluciones",
                 Accion = "Modificar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se modificó el detalle de devoluciones con id {entidad.Id}"
+                Descripcion = $"Se modificó el detalle de devoluciones con id {entidad.Id}",
+                UsuariosId = 1
             });
 
 
@@ -73,7 +76,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Detalle Devoluciones",
                 Accion = "Borrar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se borró el detalle de devoluciones con id {id}"
+                Descripcion = $"Se borró el detalle de devoluciones con id {id}",
+                UsuariosId = 1
             });
 
             var entidad = new DetalleDevoluciones();

@@ -19,7 +19,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Modelos",
                 Accion = "Consultar",
                 Fecha = DateTime.Now,
-                Descripcion = "Se consultaron los modelos"
+                Descripcion = "Se consultaron los modelos",
+                UsuariosId = 1
             });
             return this.iConexion.Modelos!.ToList();
             }
@@ -36,7 +37,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Modelos",
                 Accion = "Guardar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se guardó el modelo con id {entidad.Id}"
+                Descripcion = $"Se guardó el modelo con id {entidad.Id}",
+                UsuariosId = 1
             });
             this.iConexion.Modelos!.Add(entidad!);
                 this.iConexion.SaveChanges();
@@ -71,7 +73,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Modelos",
                 Accion = "Borrar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se borró el modelo con id {id}"
+                Descripcion = $"Se borró el modelo con id {id}",
+                UsuariosId = 1
             });
             var entidad = new Modelos();
                 entidad.Id = id;

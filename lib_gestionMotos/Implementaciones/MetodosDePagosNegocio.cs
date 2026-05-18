@@ -20,7 +20,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Metodos de pagos",
                 Accion = "Consultar",
                 Fecha = DateTime.Now,
-                Descripcion = "Se consultaron los métodos de pago"
+                Descripcion = "Se consultaron los métodos de pago",
+                UsuariosId = 1
             });
             return this.iConexion.MetodosDePagos!.ToList();
             }
@@ -37,7 +38,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Metodos de pagos",
                 Accion = "Guardar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se guardó el método de pago con id {entidad.Id}"
+                Descripcion = $"Se guardó el método de pago con id {entidad.Id}",
+                UsuariosId = 1
             });
             this.iConexion.MetodosDePagos!.Add(entidad!);
                 this.iConexion.SaveChanges();
@@ -52,7 +54,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Metodos de pagos",
                 Accion = "Modificar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se modificó el método de pago con id {entidad.Id}"
+                Descripcion = $"Se modificó el método de pago con id {entidad.Id}",
+                UsuariosId = 1
             });
 
             var entry = this.iConexion!.Entry<MetodosDePagos>(entidad);
@@ -71,7 +74,8 @@ namespace lib_gestionMotos.Implementaciones
                 Entidad = "Metodos de pagos",
                 Accion = "Borrar",
                 Fecha = DateTime.Now,
-                Descripcion = $"Se borró el método de pago con id {id}"
+                Descripcion = $"Se borró el método de pago con id {id}",
+                UsuariosId = 1
             });
             var entidad = new MetodosDePagos();
                 entidad.Id = id;
