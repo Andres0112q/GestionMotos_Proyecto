@@ -1,3 +1,5 @@
+CREATE DATABASE db_inventariomotos
+go
 use db_inventariomotos
 go
 
@@ -84,15 +86,6 @@ CREATE TABLE Repuestos (
 	PasilloUbicacion NVARCHAR(20)
 )
 
--- Tabla: InventarioMotos
-CREATE TABLE InventarioMotos(
-	Id INT PRIMARY KEY IDENTITY(1,1),
-	Cantidad INT NOT NULL,
-	Estado NVARCHAR(40),
-	MotosId INT NOT NULL FOREIGN KEY REFERENCES Motos(Id),
-	UltimoConteo DATETIME NOT NULL,
-	SucursalesId INT NOT NULL FOREIGN KEY REFERENCES Sucursales(Id)
-)
 -- Tabla: StockRepuestos
 CREATE TABLE StockRepuestos(
 	Id INT PRIMARY KEY IDENTITY(1,1),
@@ -203,6 +196,16 @@ CREATE TABLE Sucursales(
 	Direccion NVARCHAR(40) NOT NULL,
 )
 
+-- Tabla: InventarioMotos
+CREATE TABLE InventarioMotos(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	Cantidad INT NOT NULL,
+	Estado NVARCHAR(40),
+	MotosId INT NOT NULL FOREIGN KEY REFERENCES Motos(Id),
+	UltimoConteo DATETIME NOT NULL,
+	SucursalesId INT NOT NULL FOREIGN KEY REFERENCES Sucursales(Id)
+)
+
 -- Tabla: Garantias
 CREATE TABLE Garantias(
 	Id INT PRIMARY KEY IDENTITY(1,1),
@@ -308,12 +311,12 @@ INSERT INTO Repuestos (Codigo, Nombre, Precio, CategoriaRepuestosId, PasilloUbic
 ('REP004', 'Cadena transmision', 120000.00, 2, 'B2'),
 ('REP005', 'Bujia',25000.00,  3, 'C1')
 
-INSERT INTO InventarioMotos (Cantidad, Estado, MotosId, UltimoConteo) VALUES
-(5,  'Disponible',    1, '2026-01-15'),
-(3,  'Disponible',    2, '2026-01-15'),
-(0,  'Agotado',       3, '2026-01-15'),
-(8,  'Disponible',    4, '2026-02-01'),
-(2,  'Pocas unidades',5, '2026-02-01')
+INSERT INTO InventarioMotos (Cantidad, Estado, MotosId, UltimoConteo, SucursalesId) VALUES
+(5,  'Disponible',    1, '2026-01-15',1),
+(3,  'Disponible',    2, '2026-01-15',1),
+(0,  'Agotado',       3, '2026-01-15',2),
+(8,  'Disponible',    4, '2026-02-01',3),
+(2,  'Pocas unidades',5, '2026-02-01',3)
 
 INSERT INTO StockRepuestos (Actual, Minimo, Maximo, RepuestosId, UltimaRevision) VALUES
 (50, 10, 100, 1, '2026-01-10'),
